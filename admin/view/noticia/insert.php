@@ -1,5 +1,7 @@
 
-<?php include('../includes/header.html'); ?>
+<?php include('../includes/header.php');
+	  include('../../class/Categorias.php');
+	  include('../../class/Conexao.php'); ?>
 
 	<section class="container">
 		
@@ -7,7 +9,7 @@
 		<h1>Cadastrar Notícia</h1>
 		<br>
 
-		<form method="post" action="../../model/noticia/insert.php">
+		<form method="post" action="../../model/noticia/insert.php" enctype="multipart/form-data">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		      <label for="Titulo">Titulo</label>
@@ -20,13 +22,12 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="editor1">Texto</label>
-		    <textarea class="form-control" id="editor1" rows="6" name="texto">
-		    </textarea>
+		    <textarea class="form-control" id="editor1" rows="6" name="texto"></textarea>
   		  </div>
   		  <div class="form-row">
 			  <div class="form-group col-md-6">
 			    <label for="imagem">Imagem</label>
-			    <input type="file" class="form-control-file" id="imagem" name="imagem">
+			    <input type="file" class="form-control-file" id="imagem" name="imagem" accept="image/*">
 	  		  </div>
 	  		  <div class="form-group col-md-6">
 			    <label for="video">Video</label>
@@ -37,11 +38,8 @@
 			  <div class="form-group col-md-6">
 			    <label for="categoria">Categoria</label>
 			    <select class="form-control" id="categoria" name="categoria">
-			      <option value="1">Categoria 1</option>
-			      <option value="2">Categoria 2</option>
-			      <option value="3">Categoria 3</option>
-			      <option value="4">Categoria 4</option>
-			      <option value="5">Categoria 5</option>
+			      <option></option>
+			       <?php $categorias = Categorias::search($conexao); ?>
 			    </select>
 	  		  </div>
 	  		  <div class="form-group col-md-6">

@@ -62,18 +62,11 @@
 
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="video-post.html">Videos</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="catagory.html">Catagory</a></li>
-                                            <li><a href="video-post.html">Video Post</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
+                                    <li class="active"><a href="index.php">O Pasquim</a></li>
+                                    <li><a href="video-post.html">Política</a></li>
+                                    <li><a href="#">Economia</a>
                                     </li>
-                                    <li><a href="#">Features</a>
+                                    <!-- <li><a href="#">Features</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
                                                 <li><a href="index.html">Home</a></li>
@@ -124,9 +117,17 @@
                                                 <li><a href="contact.html">Contact</a></li>
                                             </ul>
                                         </div>
+                                    </li> -->
+                                    <li><a href="catagory.html">Esportes</a></li>
+                                    <li><a href="catagory.html">Colunas</a>
+                                      <ul class="dropdown">
+                                            <li><a href="index.html">Música</a></li>
+                                            <li><a href="catagory.html">Cinema</a></li>
+                                            <li><a href="video-post.html">Teatro</a></li>
+                                            <li><a href="single-post.html">Literatura</a></li>
+                                            <li><a href="contact.html">Tecnologia</a></li>
+                                        </ul>
                                     </li>
-                                    <li><a href="catagory.html">Music</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </div>
 

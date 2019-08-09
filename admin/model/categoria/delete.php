@@ -3,12 +3,11 @@
 	include('../../class/Conexao.php');
 	include('../../class/Categorias.php');
 
-	$categoria = $_POST['categoria'];
+	$id = $_POST['id'];
 
-	$c = new Categorias($conexao, $categoria);
-
-	$c->insert($conexao, $categoria);	
-
+	$usuario = Categorias::delete_category_news($conexao, $id);
+	$usuario = Categorias::delete_category($conexao, $id);
+	
 	header("Location:/projeto/admin/view/categoria/list.php");
 	
 ?>

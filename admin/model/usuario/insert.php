@@ -1,4 +1,6 @@
 <?php
+	
+	if (!isset($_SESSION)): session_start(); endif;
 
 	include('../../class/Conexao.php');
 	include('../../class/Usuarios.php');
@@ -9,8 +11,14 @@
 
 	$user = new Usuarios($nome, $email, $senha);
 
-	$user->insert($conexao);
+	if (isset($_SESSION['UsuarioNivel']) and $_SESSION['UsuarioNivel'] == 'administrador') :
+		$user->insert($conexao);
+		header("Location:/projeto/admin/view/usuario/list.php");
+	endif;
 
-	header("Location:/projeto/admin/view/usuario/list.php");
+	if (isset($_SESSION['UsuarioNivel']) and $_SESSION['UsuarioNivel'] != 'administrador') :
+		header("Location:/projeto/admin/view/usuario/login.php");
+	endif;
+
 	
 ?>

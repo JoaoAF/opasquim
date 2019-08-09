@@ -51,7 +51,7 @@
 		public static function list($conexao){
 
 			$noticias = [];
-			$query = "select n.id, n.titulo, c.categoria, n.datahora, u.nome from noticias as n inner join categorias as c on n.id_categoria = c.id inner join usuarios as u on n.id_usuario = u.id";
+			$query = "select n.id, n.titulo, c.categoria, n.datahora, u.nome from noticias as n inner join categorias as c on n.id_categoria = c.id inner join usuarios as u on n.id_usuario = u.id order by id desc";
 
 			$result = mysqli_query($conexao, $query);
 		
@@ -77,8 +77,9 @@
 				if($_SESSION['UsuarioNivel'] == "administrador") :
 
 					echo 	"<td>
-								<form method='post' action=''>
-									<button type='button'class='btn btn-outline-danger'>
+								<form method='post' action='../../model/noticia/delete.php'>
+									<input type='hidden' name='id' value='".$n['id']."'>
+									<button type='submit'class='btn btn-outline-danger'>
 										Excluir
 									</button>
 								</form>
@@ -106,6 +107,13 @@
 
 			return mysqli_query($conexao, $query);
 
+		}
+
+		public static function delete($conexao, $id){
+
+			$query = "delete from noticias where id = {$id}";
+
+			return mysqli_query($conexao, $query);
 		}
 
 	}

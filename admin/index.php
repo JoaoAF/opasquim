@@ -27,6 +27,10 @@
           
           <a class="dropdown-item" href="view/usuario/info.php">Informações Pessoais</a>
           <div class="dropdown-divider"></div>
+          <?php if($_SESSION['UsuarioNivel'] == "administrador") : ?>
+            <a class="dropdown-item" href="view/usuario/permissoes.php">Atribuir permissão</a>
+            <div class="dropdown-divider"></div>  
+          <?php endif; ?>
           <a class="dropdown-item" href="model/usuario/logout.php">Sair</a>
           <div class="dropdown-divider"></div>
         </div>
@@ -72,9 +76,11 @@
 		<h1 class="display-4">Seja muito bem vindo</h1>
 		<p class="lead">Aqui é a parte administrativa do portal de notícias, a depender do seu nivel de permissão você tera acesso a tudo por aqui.</p>
 		<hr class="my-4">
-		<p>Se você já é membro cadastrado faça o login para ter acesso as funções do site, se ainda não tiver cadastro clique em cadastre-se.</p>
-		<a class="btn btn-info btn-suc btn-lg" href="view/usuario/login.php" role="button">Login</a>
-		<a class="btn btn-info btn-primary btn-lg" href="view/usuario/insert.php" role="button">Cadrastre-se</a>
+    <?php if (!isset($_SESSION['UsuarioID'])): ?>
+  		<p>Se você já é membro cadastrado faça o login para ter acesso as funções do site, se ainda não tiver cadastro clique em cadastre-se.</p>
+  		<a class="btn btn-info btn-suc btn-lg" href="view/usuario/login.php" role="button">Login</a>
+  		<a class="btn btn-info btn-primary btn-lg" href="view/usuario/insert.php" role="button">Cadrastre-se</a>
+  <?php endif; ?>
 	</div>
 </section>
 

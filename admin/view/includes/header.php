@@ -1,4 +1,4 @@
-<?php if (!isset($_SESSION)) session_start(); ?>
+<?php if (!isset($_SESSION)): session_start(); endif; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +27,10 @@
           
           <a class="dropdown-item" href="../usuario/info.php">Informações Pessoais</a>
           <div class="dropdown-divider"></div>
+          <?php if($_SESSION['UsuarioNivel'] == "administrador") : ?>
+            <a class="dropdown-item" href="../usuario/permissoes.php">Atribuir permissão</a>
+            <div class="dropdown-divider"></div>  
+          <?php endif; ?>
           <a class="dropdown-item" href="../../model/usuario/logout.php">Sair</a>
           <div class="dropdown-divider"></div>
         </div>

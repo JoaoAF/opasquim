@@ -59,8 +59,9 @@
 								</form>
 							</td>
 					 		<td>
-								<form method='post' action=''>
-									<button type='button'class='btn btn-outline-danger'>
+								<form method='post' action='../../model/categoria/delete.php'>
+									<input type='hidden' name='id' value='".$c['id']."'>
+									<button type='submit'class='btn btn-outline-danger'>
 										Excluir
 									</button>
 								</form>
@@ -74,6 +75,20 @@
 		public function edit($conexao, $id){
 
 			$query = "update categorias set categoria = '{$this->categoria}' where id = {$id}";
+
+			return mysqli_query($conexao, $query);
+		}
+
+		public static function delete_category_news($conexao, $id){
+
+			$query = "delete from noticias where id_categoria = {$id}";
+
+			return mysqli_query($conexao, $query);
+		}
+
+		public static function delete_category($conexao, $id){
+
+			$query = "delete from categorias where id = {$id}";
 
 			return mysqli_query($conexao, $query);
 		}

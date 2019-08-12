@@ -145,65 +145,6 @@
         </div>
     </header>
 
-    <!-- <div class="hero-area d-flex flex-wrap">
-        <div class="hero-single-section">
-
-            <div class="single-welcome-post bg-img item1 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(img/bg-img/1.jpg);">
-
-                <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn"><i class="fa fa-play"></i></a>
-
-                <div class="welcome-post-content">
-
-                    <div class="single-blog-post white">
-                        <div class="blog-content">
-                            <a href="#" class="post-title">Titulo da notícia</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-single-section">
-
-            <div class="single-welcome-post bg-img item2 wow fadeInUp" data-wow-delay="400ms" style="background-image: url(img/bg-img/2.jpg);">
-
-                <div class="welcome-post-content">
-
-                    <div class="single-blog-post white">
-                        <div class="blog-content">
-                            <a href="#" class="post-title">Spain: Take a virtual tour</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-second-section d-flex flex-wrap">
-
-                <div class="single-welcome-post bg-img item3 wow fadeInUp" data-wow-delay="500ms" style="background-image: url(img/bg-img/3.jpg);">
-
-                    <div class="welcome-post-content">
-
-                        <div class="single-blog-post style2 white">
-                            <div class="blog-content">
-                                <a href="#" class="post-title">5 Tips to create your garden</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-welcome-post bg-img item4 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(img/bg-img/4.jpg);">
-
-                    <div class="welcome-post-content">
-
-                        <div class="single-blog-post style2 white">
-                            <div class="blog-content">
-                                <a href="#" class="post-title">10 Movies you need to see</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="hero-area d-flex flex-wrap">
         <div class="hero-single-section">
 

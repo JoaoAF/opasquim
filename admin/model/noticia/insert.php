@@ -4,15 +4,19 @@
 	include('../../class/Conexao.php');
 	include('../../class/Noticias.php');
 
+	ini_set('upload_max_filesize', '64M');
+	ini_set('post_max_size', '64M');
 
 	if (!isset($_SESSION)) session_start();
 
 	$titulo		= $_POST['titulo'];
 	$subtitulo	= $_POST['subtitulo'];
-	$texto		= $_POST['texto'];
 	$tags		= $_POST['tags'];
 	$categoria  = $_POST['categoria'];
+	$videos  	= $_POST['video'];
 	
+	$texto		= str_replace("\"","\'", $_POST['texto']);
+
 	$usuario 	= '0';
 	$datahora 	= date("Y-m-d H:i:s");
 	
@@ -26,16 +30,8 @@
 		$ext = strtolower(substr($_FILES['imagem']['name'],-4));
 	    $novo_nome_img = date("Y.m.d-H.i.s") . $ext; 
 	    move_uploaded_file($_FILES['imagem']['tmp_name'], $destino.$novo_nome_img); 
-
-	    $ext = strtolower(substr($_FILES['video']['name'],-4));
-	    $novo_nome_video = date("Y.m.d-H.i.s") . $ext; 
-	    move_uploaded_file($_FILES['video']['tmp_name'], $destino.$novo_nome_video);
 		
 		$imagens = $destinoBD.$novo_nome_img;
-
-		if(!empty($_FILES['video']['tmp_name']) ){$videos = $destinoBD.$novo_nome_video;}
-		if(empty($_FILES['video']['tmp_name']) ){$videos = 'Sem video';}
-
 
 		$noticia = new Noticias($titulo, $subtitulo, $texto, $imagens, $videos, $tags, $categoria, $usuario, $datahora);
 
@@ -43,7 +39,6 @@
 			header("Location:/projeto/admin/view/noticia/list.php");
 		}else{
 			echo "Deu ruim ao inserir";
-			print_r($noticia);
 		}
 		
 	}else{

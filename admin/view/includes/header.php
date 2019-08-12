@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap-grid.css">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap-reboot.css">
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 </head>
 <body>
 <?php if (isset($_SESSION['UsuarioID'])): ?>

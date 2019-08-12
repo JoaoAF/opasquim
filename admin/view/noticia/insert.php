@@ -22,7 +22,9 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="editor1">Texto</label>
-		    <textarea class="form-control" id="editor1" rows="6" name="texto"></textarea>
+		    <div id="editor">
+		    	<textarea class="form-control" rows="6" id="texto" name="texto"></textarea>
+  		  	</div>
   		  </div>
   		  <div class="form-row">
 			  <div class="form-group col-md-6">
@@ -31,7 +33,7 @@
 	  		  </div>
 	  		  <div class="form-group col-md-6">
 			    <label for="video">Video</label>
-			    <input type="file" class="form-control-file" id="video" name="video">
+		      <input type="text" class="form-control" id="video" placeholder="Vídeo" name="video">
 	  		  </div>
   		  </div>
   		  <div class="form-row">

@@ -6,7 +6,7 @@
 
 		<h1>Listagem de notícias</h1>
 
-		<table class="table">
+		<table id="tabela" class="display">
 		  <thead>
 		    <tr>
 		      <th scope="col">#</th>
@@ -14,6 +14,8 @@
 		      <th scope="col">Categoria</th>
 		      <th scope="col">DataHora</th>
 		      <th scope="col">Usuário</th>
+		      <th scope="col">---</th>
+		      <th scope="col">---</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -22,5 +24,5 @@
 		</table>
 
 	</section>
-
+	
 <?php include('../includes/footer.html'); ?>

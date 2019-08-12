@@ -4,7 +4,11 @@
     include('admin/class/Conexao.php');
     include('admin/class/Portal.php');
 
-    $destaques = Portal::destaques($conexao);
+    $destaques  = Portal::destaques($conexao);
+    $cronicas   = Portal::cronicas_em_video($conexao);
+    $politica   = Portal::noticias_politica($conexao);
+    $economia   = Portal::noticias_economia($conexao);
+    $esportes   = Portal::noticias_esportes($conexao);
 
 ?>
 <!DOCTYPE html>
@@ -37,23 +41,7 @@
                             </div>
 
                             <div class="classynav">
-                                <ul>
-                                    <li class="active"><a href="index.php">O Pasquim</a></li>
-                                    <li><a href="video-post.html">Notícia</a></li>
-                                    <li><a href="video-post.html">Política</a></li>
-                                    <li><a href="#">Economia</a>
-                                    </li>
-                                    <li><a href="catagory.html">Esportes</a></li>
-                                    <li><a href="catagory.html">Crônicas</a>
-                                      <ul class="dropdown">
-                                            <li><a href="index.html">Música</a></li>
-                                            <li><a href="catagory.html">Cinema</a></li>
-                                            <li><a href="video-post.html">Teatro</a></li>
-                                            <li><a href="single-post.html">Literatura</a></li>
-                                            <li><a href="contact.html">Tecnologia</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                               <?php $categorias = Portal::menu($conexao); ?>
                             </div>
 
                         </div>
@@ -79,7 +67,19 @@
                     <div class="single-blog-post white">
                         <div class="blog-content">
                             <a href="#" class="post-tag"><?php echo $destaques[0]['categoria']; ?></a>
-                            <a href="#" class="post-title"><?php echo $destaques[0]['titulo']; ?></a>
+
+                            <form method="post" action="show.php" name="destaque">
+                                <input type="hidden" name="titulo"    value="<?php echo $destaques[0]['titulo']; ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $destaques[0]['subtitulo']; ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $destaques[0]['texto']; ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $destaques[0]['imagens']; ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $destaques[0]['videos']; ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $destaques[0]['categoria']; ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $destaques[0]['nome']; ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $destaques[0]['datahora']; ?>">
+                                <a href='javascript:destaque.submit()' class="post-title"><?php echo $destaques[0]['titulo']; ?></a>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -87,31 +87,63 @@
         </div>
         <div class="hero-single-section">
 
-            <div class="single-welcome-post bg-img item2 wow fadeInUp" data-wow-delay="400ms" style="background-image: url(img/bg-img/2.jpg);">
+            <div class="single-welcome-post bg-img item2 wow fadeInUp" data-wow-delay="400ms" style="background-image: url(<?php echo $destaques[1]['imagens']; ?>););">
                 <div class="welcome-post-content">
                     <div class="single-blog-post white">
                         <div class="blog-content">
-                            <a href="#" class="post-title">Destaque 2</a>
+                            <a href="#" class="post-tag"><?php echo $destaques[1]['categoria']; ?></a>
+                            <form method="post" action="show.php" name="destaque2">
+                                <input type="hidden" name="titulo"    value="<?php echo $destaques[1]['titulo']; ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $destaques[1]['subtitulo']; ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $destaques[1]['texto']; ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $destaques[1]['imagens']; ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $destaques[1]['videos']; ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $destaques[1]['categoria']; ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $destaques[1]['nome']; ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $destaques[1]['datahora']; ?>">
+                                <a href='javascript:destaque2.submit()' class="post-title"><?php echo $destaques[1]['titulo']; ?></a>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hero-second-section d-flex flex-wrap">
-                <div class="single-welcome-post bg-img item3 wow fadeInUp" data-wow-delay="500ms" style="background-image: url(img/bg-img/3.jpg);">
+                <div class="single-welcome-post bg-img item3 wow fadeInUp" data-wow-delay="500ms" style="background-image: url(<?php echo $destaques[2]['imagens']; ?>);">
                     <div class="welcome-post-content">
-
                         <div class="single-blog-post style2 white">
                             <div class="blog-content">
-                                <a href="#" class="post-title">Destaque 3</a>
+                                <a href="#" class="post-tag"><?php echo $destaques[2]['categoria']; ?></a>
+                                <form method="post" action="show.php" name="destaque3">
+                                <input type="hidden" name="titulo"    value="<?php echo $destaques[2]['titulo']; ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $destaques[2]['subtitulo']; ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $destaques[2]['texto']; ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $destaques[2]['imagens']; ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $destaques[2]['videos']; ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $destaques[2]['categoria']; ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $destaques[2]['nome']; ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $destaques[2]['datahora']; ?>">
+                                <a href='javascript:destaque3.submit()' class="post-title"><?php echo $destaques[2]['titulo']; ?></a>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="single-welcome-post bg-img item4 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(img/bg-img/4.jpg);">
+                <div class="single-welcome-post bg-img item4 wow fadeInUp" data-wow-delay="600ms" style="background-image: url(<?php echo $destaques[3]['imagens']; ?>);">
                     <div class="welcome-post-content">
                         <div class="single-blog-post style2 white">
                             <div class="blog-content">
-                                <a href="#" class="post-title">Destaque 4</a>
+                                 <a href="#" class="post-tag"><?php echo $destaques[3]['categoria']; ?></a>
+                                <form method="post" action="show.php" name="destaque4">
+                                <input type="hidden" name="titulo"    value="<?php echo $destaques[3]['titulo']; ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $destaques[3]['subtitulo']; ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $destaques[3]['texto']; ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $destaques[3]['imagens']; ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $destaques[3]['videos']; ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $destaques[3]['categoria']; ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $destaques[3]['nome']; ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $destaques[3]['datahora']; ?>">
+                                <a href='javascript:destaque4.submit()' class="post-title"><?php echo $destaques[3]['titulo']; ?></a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -120,260 +152,23 @@
         </div>
     </div>
 
-    <div class="video-mag-tabs-area mt-50 wow fadeInUp" data-wow-delay="200ms">
+    <div class="video-mag-tabs-area mt-50 wow fadeInUp" data-wow-delay="200ms" id="Notícias">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="latest" aria-selected="true">Videos 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="top-viewed-tab" data-toggle="tab" href="#top-viewed" role="tab" aria-controls="top-viewed" aria-selected="false">Videos 2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos 3</a>
-                        </li>
+                       <?php $c  = Portal::carousel_categorias($conexao); ?>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
-                            <div class="latest-videos-slide owl-carousel">
 
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 1</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 2</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 3</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 4</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 5</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/4.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 6</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="top-viewed" role="tabpanel" aria-labelledby="top-viewed-tab">
-                            <div class="top-viewed-slide owl-carousel">
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 1</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 2</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 3</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 4</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 5</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/6.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 6</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
-                            <div class="videos-slide owl-carousel">
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 1</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 2</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 3</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 4</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 5</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-
-                                <div class="single-blog-post style2">
-                                    <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/5.jpg" alt="">
-
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <a href="#" class="post-tag">Jornalista 6</a>
-                                        <a href="#" class="post-title">Titulo</a>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php $n = Portal::carousel_noticias($conexao); ?>
+                                
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <section class="travel-videos-area">
+    <section class="travel-videos-area" id="Crônicas">
         <div class="container">
             <div class="travel-videos-content">
                 <div class="row">
@@ -386,16 +181,28 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
 
-                        <div class="single-welcome-post style-2 bg-img mb-30 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(img/bg-img/1.jpg);">
+                        <div class="single-welcome-post style-2 bg-img mb-30 wow fadeInUp" data-wow-delay="300ms" style="background-image: url(<?php echo $cronicas[0]['imagens']; ?>);">
 
-                            <a href="#" class="video-play-btn"><i class="fa fa-play"></i></a>
+                            <a href="<?php echo $cronicas[0]['videos']; ?>" class="video-play-btn"><i class="fa fa-play"></i></a>
 
                             <div class="welcome-post-content">
 
                                 <div class="single-blog-post white">
                                     <div class="blog-content">
-                                        <a href="#" class="post-tag">Cronista 1</a>
-                                        <a href="#" class="post-title">Título da crônica</a>
+                                        <a href="#" class="post-tag">
+                                            <?php echo $cronicas[0]['nome']; ?>
+                                        </a>
+<form method="post" action="show.php" name="news">
+    <input type="hidden" name="titulo" value="<?php echo $cronicas[0]['titulo']; ?>">
+    <input type="hidden" name="subtitulo" value="<?php echo $cronicas[0]['subtitulo']; ?>">
+    <input type="hidden" name="texto" value="<?php echo $cronicas[0]['texto']; ?>">
+    <input type="hidden" name="imagens" value="<?php echo $cronicas[0]['imagens']; ?>">
+    <input type="hidden" name="videos" value="<?php echo $cronicas[0]['videos']; ?>">
+    <input type="hidden" name="categoria" value="<?php echo $cronicas[0]['categoria']; ?>">
+    <input type="hidden" name="nome" value="<?php echo $cronicas[0]['nome']; ?>">
+    <input type="hidden" name="datahora" value="<?php echo $cronicas[0]['datahora']; ?>">
+<a href='javascript:news.submit()' class="post-title"><?php echo $cronicas[0]['titulo']; ?></a>
+</form>
                                     </div>
                                 </div>
                             </div>
@@ -407,13 +214,23 @@
                             <div class="col-md-6">
                                 <div class="single-blog-post style3 mb-30 wow fadeInUp" data-wow-delay="400ms">
                                     <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/8.jpg" alt="">
+                                        <img src="<?php echo $cronicas[1]['imagens'];?>" alt="">
 
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                        <a href="<?php echo $cronicas[1]['videos'];?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                                     </div>
                                     <div class="blog-content">
-                                        <a href="#" class="post-tag">Cronista 2</a>
-                                        <a href="#" class="post-title">Título da crônica</a>
+                                        <a href="#" class="post-tag"><?php echo $cronicas[1]['nome'];?></a>
+                                        <form method="post" action="show.php" name="news2">
+                                            <input type="hidden" name="titulo" value="<?php echo $cronicas[1]['titulo']; ?>">
+                                            <input type="hidden" name="subtitulo" value="<?php echo $cronicas[1]['subtitulo']; ?>">
+                                            <input type="hidden" name="texto" value="<?php echo $cronicas[1]['texto']; ?>">
+                                            <input type="hidden" name="imagens" value="<?php echo $cronicas[1]['imagens']; ?>">
+                                            <input type="hidden" name="videos" value="<?php echo $cronicas[1]['videos']; ?>">
+                                            <input type="hidden" name="categoria" value="<?php echo $cronicas[1]['categoria']; ?>">
+                                            <input type="hidden" name="nome" value="<?php echo $cronicas[1]['nome']; ?>">
+                                            <input type="hidden" name="datahora" value="<?php echo $cronicas[1]['datahora']; ?>">
+                                        <a href='javascript:news2.submit()' class="post-title"><?php echo $cronicas[1]['titulo']; ?></a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -421,13 +238,23 @@
                             <div class="col-md-6">
                                 <div class="single-blog-post style3 mb-30 wow fadeInUp" data-wow-delay="500ms">
                                     <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/9.jpg" alt="">
+                                        <img src="<?php echo $cronicas[2]['imagens'];?>" alt="">
 
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                        <a href="<?php echo $cronicas[2]['videos'];?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                                     </div>
                                     <div class="blog-content">
-                                        <a href="#" class="post-tag">Cronista 3</a>
-                                        <a href="#" class="post-title">Título da crônica</a>
+                                        <a href="#" class="post-tag"><?php echo $cronicas[2]['nome'];?></a>
+                                        <form method="post" action="show.php" name="news3">
+                                            <input type="hidden" name="titulo" value="<?php echo $cronicas[2]['titulo']; ?>">
+                                            <input type="hidden" name="subtitulo" value="<?php echo $cronicas[2]['subtitulo']; ?>">
+                                            <input type="hidden" name="texto" value="<?php echo $cronicas[2]['texto']; ?>">
+                                            <input type="hidden" name="imagens" value="<?php echo $cronicas[2]['imagens']; ?>">
+                                            <input type="hidden" name="videos" value="<?php echo $cronicas[2]['videos']; ?>">
+                                            <input type="hidden" name="categoria" value="<?php echo $cronicas[2]['categoria']; ?>">
+                                            <input type="hidden" name="nome" value="<?php echo $cronicas[2]['nome']; ?>">
+                                            <input type="hidden" name="datahora" value="<?php echo $cronicas[2]['datahora']; ?>">
+                                        <a href='javascript:news3.submit()' class="post-title"><?php echo $cronicas[2]['titulo']; ?></a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -435,13 +262,23 @@
                             <div class="col-md-6">
                                 <div class="single-blog-post style3 mb-30 wow fadeInUp" data-wow-delay="600ms">
                                     <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/10.jpg" alt="">
+                                        <img src="<?php echo $cronicas[3]['imagens'];?>" alt="">
 
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                        <a href="<?php echo $cronicas[3]['videos'];?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                                     </div>
                                     <div class="blog-content">
-                                        <a href="#" class="post-tag">Cronista 4</a>
-                                        <a href="#" class="post-title">Título da crônica</a>
+                                        <a href="#" class="post-tag"><?php echo $cronicas[3]['nome'];?></a>
+                                        <form method="post" action="show.php" name="news4">
+                                            <input type="hidden" name="titulo" value="<?php echo $cronicas[3]['titulo']; ?>">
+                                            <input type="hidden" name="subtitulo" value="<?php echo $cronicas[3]['subtitulo']; ?>">
+                                            <input type="hidden" name="texto" value="<?php echo $cronicas[3]['texto']; ?>">
+                                            <input type="hidden" name="imagens" value="<?php echo $cronicas[3]['imagens']; ?>">
+                                            <input type="hidden" name="videos" value="<?php echo $cronicas[3]['videos']; ?>">
+                                            <input type="hidden" name="categoria" value="<?php echo $cronicas[3]['categoria']; ?>">
+                                            <input type="hidden" name="nome" value="<?php echo $cronicas[3]['nome']; ?>">
+                                            <input type="hidden" name="datahora" value="<?php echo $cronicas[3]['datahora']; ?>">
+                                        <a href='javascript:news4.submit()' class="post-title"><?php echo $cronicas[3]['titulo']; ?></a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -449,13 +286,23 @@
                             <div class="col-md-6">
                                 <div class="single-blog-post style3 mb-30 wow fadeInUp" data-wow-delay="700ms">
                                     <div class="blog-thumb mb-30">
-                                        <img src="img/bg-img/11.jpg" alt="">
+                                        <img src="<?php echo $cronicas[4]['imagens'];?>" alt="">
 
-                                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                        <a href="<?php echo $cronicas[4]['videos'];?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                                     </div>
                                     <div class="blog-content">
-                                        <a href="#" class="post-tag">Cronista 5</a>
-                                        <a href="#" class="post-title">Título da crônica</a>
+                                        <a href="#" class="post-tag"><?php echo $cronicas[4]['nome'];?></a>
+                                        <form method="post" action="show.php" name="news5">
+                                            <input type="hidden" name="titulo" value="<?php echo $cronicas[4]['titulo']; ?>">
+                                            <input type="hidden" name="subtitulo" value="<?php echo $cronicas[4]['subtitulo']; ?>">
+                                            <input type="hidden" name="texto" value="<?php echo $cronicas[4]['texto']; ?>">
+                                            <input type="hidden" name="imagens" value="<?php echo $cronicas[4]['imagens']; ?>">
+                                            <input type="hidden" name="videos" value="<?php echo $cronicas[4]['videos']; ?>">
+                                            <input type="hidden" name="categoria" value="<?php echo $cronicas[4]['categoria']; ?>">
+                                            <input type="hidden" name="nome" value="<?php echo $cronicas[4]['nome']; ?>">
+                                            <input type="hidden" name="datahora" value="<?php echo $cronicas[4]['datahora']; ?>">
+                                        <a href='javascript:news5.submit()' class="post-title"><?php echo $cronicas[4]['titulo']; ?></a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -471,192 +318,334 @@
             <div class="small-videos-content">
                 <div class="row">
 
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4" id="Política">
                         <div class="section-heading wow fadeInUp" data-wow-delay="200ms">
                             <h2>Política</h2>
                         </div>
 
                         <div class="single-blog-post style2 mb-50 wow fadeInUp" data-wow-delay="300ms">
                             <div class="blog-thumb mb-5">
-                                <img src="img/bg-img/12.jpg" alt="">
+                                <img src="<?php echo $politica[0]['imagens'] ?>" alt="">
 
-                                <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $politica[0]['videos'] ?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 1</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $politica[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="politica">
+                                <input type="hidden" name="titulo"    value="<?php echo $politica[0]['titulo'] ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $politica[0]['subtitulo'] ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $politica[0]['texto'] ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $politica[0]['imagens'] ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $politica[0]['videos'] ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $politica[0]['categoria'] ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $politica[0]['nome'] ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $politica[0]['datahora'] ?>">
+                                <a href='javascript:politica.submit()' class="post-title"><?php echo $politica[0]['titulo'] ?></a>
+                                </form>
                             </div>
                         </div>
 
                         <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/14.jpg" alt="">
+                                <img src="<?php echo $politica[1]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $politica[1]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 2</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $politica[1]['nome'] ?></a>
+                                <form method="post" action="show.php" name="politica2">
+                                <input type="hidden" name="titulo"    value="<?php echo $politica[1]['titulo'] ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $politica[1]['subtitulo'] ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $politica[1]['texto'] ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $politica[1]['imagens'] ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $politica[1]['videos'] ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $politica[1]['categoria'] ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $politica[1]['nome'] ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $politica[1]['datahora'] ?>">
+                                <a href='javascript:politica2.submit()' class="post-title"><?php echo $politica[1]['titulo'] ?></a>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/15.jpg" alt="">
+                                <img src="<?php echo $politica[2]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $politica[2]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 3</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $politica[2]['nome'] ?></a>
+                                <form method="post" action="show.php" name="politica3">
+                                <input type="hidden" name="titulo"    value="<?php echo $politica[2]['titulo'] ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $politica[2]['subtitulo'] ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $politica[2]['texto'] ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $politica[2]['imagens'] ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $politica[2]['videos'] ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $politica[2]['categoria'] ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $politica[2]['nome'] ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $politica[2]['datahora'] ?>">
+                                <a href='javascript:politica3.submit()' class="post-title"><?php echo $politica[2]['titulo'] ?></a>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="600ms">
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/16.jpg" alt="">
+                                <img src="<?php echo $politica[3]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $politica[3]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 4</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $politica[3]['nome'] ?></a>
+                                <form method="post" action="show.php" name="politica4">
+                                <input type="hidden" name="titulo"    value="<?php echo $politica[3]['titulo'] ?>">
+                                <input type="hidden" name="subtitulo" value="<?php echo $politica[3]['subtitulo'] ?>">
+                                <input type="hidden" name="texto"     value="<?php echo $politica[3]['texto'] ?>">
+                                <input type="hidden" name="imagens"   value="<?php echo $politica[3]['imagens'] ?>">
+                                <input type="hidden" name="videos"    value="<?php echo $politica[3]['videos'] ?>">
+                                <input type="hidden" name="categoria" value="<?php echo $politica[3]['categoria'] ?>">
+                                <input type="hidden" name="nome"      value="<?php echo $politica[3]['nome'] ?>">
+                                <input type="hidden" name="datahora"  value="<?php echo $politica[3]['datahora'] ?>">
+                                <a href='javascript:politica4.submit()' class="post-title"><?php echo $politica[3]['titulo'] ?></a>
+                                </form>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4" id="Economia">
                         <div class="section-heading wow fadeInUp" data-wow-delay="200ms">
                             <h2>Economia</h2>
                         </div>
 
                         <div class="single-blog-post style2 mb-50 wow fadeInUp" data-wow-delay="300ms">
                             <div class="blog-thumb mb-5">
-                                <img src="img/bg-img/13.jpg" alt="">
+                                <img src="<?php echo $economia[0]['imagens'] ?>" alt="">
 
-                                <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $economia[0]['videos'] ?>" class="video-play-btn style2"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 1</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $economia[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="economia">
+                                    <input type="hidden" name="titulo"    value="<?php echo $economia[0]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $economia[0]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $economia[0]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $economia[0]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $economia[0]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $economia[0]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $economia[0]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $economia[0]['datahora']; ?>">
+                                <a href='javascript:economia.submit()' class="post-title"><?php echo $economia[0]['titulo']; ?></a>
+                                </form>
                             </div>
                         </div>
 
                         <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/17.jpg" alt="">
+                                <img src="<?php echo $economia[1]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $economia[1]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 2</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $economia[1]['nome'] ?></a>
+                                <form method="post" action="show.php" name="economia2">
+                                    <input type="hidden" name="titulo"    value="<?php echo $economia[1]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $economia[1]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $economia[1]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $economia[1]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $economia[1]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $economia[1]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $economia[1]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $economia[1]['datahora']; ?>">
+                                <a href='javascript:economia2.submit()' class="post-title"><?php echo $economia[1]['titulo']; ?></a>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/18.jpg" alt="">
+                                <img src="<?php echo $economia[2]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $economia[2]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 3</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $economia[2]['nome'] ?></a>
+                                <form method="post" action="show.php" name="economia3">
+                                    <input type="hidden" name="titulo"    value="<?php echo $economia[2]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $economia[2]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $economia[2]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $economia[2]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $economia[2]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $economia[2]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $economia[2]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $economia[2]['datahora']; ?>">
+                                <a href='javascript:economia3.submit()' class="post-title"><?php echo $economia[1]['titulo']; ?></a>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="600ms">
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="400ms">
                             <div class="blog-thumb">
-                                <img src="img/bg-img/19.jpg" alt="">
+                                <img src="<?php echo $economia[3]['imagens'] ?>" alt="">
 
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                                <a href="<?php echo $economia[3]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="blog-content">
-                               <a href="#" class="post-tag">Jornalista 4</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="section-heading wow fadeInUp" data-wow-delay="200ms">
-                            <h2>Esportes</h2>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/20.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 1</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/21.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 2</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/22.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 3</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/23.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 4</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/24.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 5</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
-                            </div>
-                        </div>
-
-                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="blog-thumb">
-                                <img src="img/bg-img/25.jpg" alt="">
-
-                                <a href="#" class="video-play-btn style3"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="#" class="post-tag">Jornalista 6</a>
-                                <a href="#" class="post-title">Titulo da notícia</a>
+                                <a href="#" class="post-tag"><?php echo $economia[3]['nome'] ?></a>
+                                <form method="post" action="show.php" name="economia4">
+                                    <input type="hidden" name="titulo"    value="<?php echo $economia[3]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $economia[3]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $economia[3]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $economia[3]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $economia[3]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $economia[3]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $economia[3]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $economia[3]['datahora']; ?>">
+                                <a href='javascript:economia4.submit()' class="post-title"><?php echo $economia[1]['titulo']; ?></a>
+                                </form>
                             </div>
                         </div>
 
                         
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4" id="Esportes">
+                        <div class="section-heading wow fadeInUp" data-wow-delay="200ms">
+                            <h2>Esportes</h2>
+                        </div>
+                        <?php $esportes   = Portal::noticias_esportes($conexao);?>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[0]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[0]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[0]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[0]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[0]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[0]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[0]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[0]['datahora']; ?>">
+                                <a href='javascript:esportes.submit()' class="post-title"><?php echo $esportes[0]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes2">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[1]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[1]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[1]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[1]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[1]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[1]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[1]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[1]['datahora']; ?>">
+                                <a href='javascript:esportes2.submit()' class="post-title"><?php echo $esportes[1]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes3">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[2]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[2]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[2]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[2]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[2]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[2]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[2]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[2]['datahora']; ?>">
+                                <a href='javascript:esportes3.submit()' class="post-title"><?php echo $esportes[2]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes4">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[3]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[3]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[3]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[3]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[3]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[3]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[3]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[3]['datahora']; ?>">
+                                <a href='javascript:esportes4.submit()' class="post-title"><?php echo $esportes[3]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes5">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[4]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[4]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[4]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[4]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[4]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[4]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[4]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[4]['datahora']; ?>">
+                                <a href='javascript:esportes5.submit()' class="post-title"><?php echo $esportes[4]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="single-blog-post style4 d-flex mb-30 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="blog-thumb">
+                                <img src="<?php echo $esportes[0]['imagens'] ?>" alt="">
+
+                                <a href="<?php echo $esportes[0]['videos'] ?>" class="video-play-btn style3"><i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-tag"><?php echo $esportes[0]['nome'] ?></a>
+                                <form method="post" action="show.php" name="esportes6">
+                                    <input type="hidden" name="titulo"    value="<?php echo $esportes[5]['titulo']; ?>">
+                                    <input type="hidden" name="subtitulo" value="<?php echo $esportes[5]['subtitulo']; ?>">
+                                    <input type="hidden" name="texto"     value="<?php echo $esportes[5]['texto']; ?>">
+                                    <input type="hidden" name="imagens"   value="<?php echo $esportes[5]['imagens']; ?>">
+                                    <input type="hidden" name="videos"    value="<?php echo $esportes[5]['videos']; ?>">
+                                    <input type="hidden" name="categoria" value="<?php echo $esportes[5]['categoria']; ?>">
+                                    <input type="hidden" name="nome"      value="<?php echo $esportes[5]['nome']; ?>">
+                                    <input type="hidden" name="datahora"  value="<?php echo $esportes[5]['datahora']; ?>">
+                                <a href='javascript:esportes6.submit()' class="post-title"><?php echo $esportes[5]['titulo']; ?></a>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -688,10 +677,7 @@
                         <div class="video-catagory">
                             <h5 class="widget-title">Conteúdos</h5>
                             <ul>
-                                <li><a href="#"><span>Política</span> <span>20</span></a></li>
-                                <li><a href="#"><span>Economia</span> <span>10</span></a></li>
-                                <li><a href="#"><span>Esportes</span> <span>71</span></a></li>
-                                <li><a href="#"><span>Crõnicas</span> <span>15</span></a></li>
+                            <?php $numerador = Portal::numerador_conteudos($conexao); ?>
                             </ul>
                         </div>
                     </div>
@@ -723,16 +709,7 @@
     <script src="js/active.js" type="9d87448a96b31580b8ebd9e2-text/javascript"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="9d87448a96b31580b8ebd9e2-text/javascript"></script>
-    <script type="9d87448a96b31580b8ebd9e2-text/javascript">
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
-    </script>
+   
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/95c75768/cloudflare-static/rocket-loader.min.js" data-cf-settings="9d87448a96b31580b8ebd9e2-|49" defer=""></script>
 </body>
 
